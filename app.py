@@ -62,11 +62,11 @@ def question(quiz_id, num):
     if q:
         q = q[0]
         asql = '''SELECT answer_number, answer_text FROM answers WHERE question_id = %s'''
-        as = get_sql_rows(asql, (q['id'],))
-        if as:
+        ans = get_sql_rows(asql, (q['id'],))
+        if ans:
             return jsonify(
                 question_text = q['question_text'],
-                answers = as,
+                answers = ans,
                 total_questions = quiz['num_questions']
             )
     return jsonify(
